@@ -1,17 +1,41 @@
-import 'package:mcp_dart/mcp_dart.dart';
+import 'dart:async';
+import 'dart:io' as io;
+
+import 'package:dart_mcp/server.dart';
+import 'package:dart_mcp/stdio.dart';
 
 void main() {
-  final server = McpServer(Implementation(name: "demo_mcp", version: "1.0.0"));
-  server.registerTool(
-    "get_time",
-    callback: (args, extra) {
-      return CallToolResult.fromContent([
-        TextContent(
-          text: "Текущее время в ISO8601: ${DateTime.now().toIso8601String()}",
-        ),
-      ]);
-    },
-  );
+  DemoMCPServer(stdioChannel(input: io.stdin, output: io.stdout));
+}
 
-  server.connect(StdioServerTransport());
+base class DemoMCPServer extends MCPServer with ToolsSupport {
+  DemoMCPServer(super.channel)
+      : super.fromStreamChannel(
+          implementation: Implementation(
+            name: "demo_mcp",
+            version: "1.0.0",
+          ),
+        );
+
+  @override
+  FutureOr<InitializeResult> initialize(InitializeRequest request) {
+    registerTool(
+      Tool(
+        name: "get_time",
+        description: "Получить текущее время",
+        inputSchema: ObjectSchema(),
+      ),
+      (arguments) async {
+        return CallToolResult(
+          content: [
+            TextContent(
+              text:
+                  "Текущее время в ISO8601: ${DateTime.now().toIso8601String()}",
+            ),
+          ],
+        );
+      },
+    );
+    return super.initialize(request);
+  }
 }

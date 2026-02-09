@@ -1,0 +1,10 @@
+{
+    "chat.mcp.serverSampling": {
+        "flutter_mcp_demo/.vscode/mcp.json: demo_mcp": {
+            "allowedModels": [
+                "copilot/claude-sonnet-4.5",
+                "copilot/auto"
+            ]
+        }
+    }
+}

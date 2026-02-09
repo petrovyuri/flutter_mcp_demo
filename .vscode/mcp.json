@@ -1,0 +1,13 @@
+{
+	"servers": {
+		"demo_mcp": {
+			"command": "dart",
+			"args": [
+				"run",
+				"C:\\Users\\Yura\\projects\\flutter_mcp_demo\\bin\\mcp.dart",
+			],
+			"env": {}
+		},
+	},
+	"inputs": []
+}

@@ -1,5 +1,4 @@
 
-
 Сделай дамп дерева виджетов, найди виджет FloatingActionButton и расскажи его свойства
 
 Найди кнопку FloatingActionButton и нажми 10 раз
