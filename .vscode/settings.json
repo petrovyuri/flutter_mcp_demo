@@ -6,5 +6,6 @@
                 "copilot/auto"
             ]
         }
-    }
+    },
+    "dart.mcpServer": true
 }
